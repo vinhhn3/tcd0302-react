@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./App.css";
-import Age from "./components/Age";
-import Name from "./components/Name";
+import Navbar from "./components/layout/Navbar";
+import UserItem from "./components/users/UserItem";
 
 // function App() {
 //   return (
@@ -42,12 +42,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Name name={this.state.name} />
-        <Age age={this.state.age} />
-        <Age age={this.state.age} />
-        <Age age={this.state.age} />
-        <Age age={this.state.age} />
-        <Age age={this.state.age} />
+        <Navbar />
+        <UserItem />
+        <UserItem />
+        <UserItem />
+        <UserItem />
+        <UserItem />
+        <UserItem />
       </div>
     );
   }
