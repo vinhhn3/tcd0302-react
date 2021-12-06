@@ -1,5 +1,7 @@
 import { Component } from "react";
 import "./App.css";
+import Age from "./components/Age";
+import Name from "./components/Name";
 
 // function App() {
 //   return (
@@ -40,17 +42,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>My name is: {this.state.showName && this.state.name}</h1>
-        <h2>Address : {this.state.address}</h2>
-        <p>My age: {this.state.age}</p>
-        <button onClick={this.increase}>Increase my age</button>
-        <button onClick={this.clearAge}>Clear my age</button>
-        <button onClick={this.decrease}>Decrease my age</button>
-        {this.state.showLoading ? (
-          <h4>Loading ...</h4>
-        ) : (
-          <h4>No loading ...</h4>
-        )}
+        <Name name={this.state.name} />
+        <Age age={this.state.age} />
+        <Age age={this.state.age} />
+        <Age age={this.state.age} />
+        <Age age={this.state.age} />
+        <Age age={this.state.age} />
       </div>
     );
   }
