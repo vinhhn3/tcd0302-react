@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
-import UserItem from "./components/users/UserItem";
+import Users from "./components/users/Users";
 
 // function App() {
 //   return (
@@ -14,41 +14,33 @@ import UserItem from "./components/users/UserItem";
 
 class App extends Component {
   state = {
-    name: "Vinh Hoang",
-    age: 31,
-    address: "658 Ngo Quyen",
-    showName: false,
-    showLoading: false,
-  };
-
-  increase = () => {
-    this.setState({
-      age: this.state.age + 1,
-    });
-  };
-
-  clearAge = () => {
-    this.setState({
-      age: (this.state.age = 0),
-    });
-  };
-
-  decrease = () => {
-    this.setState({
-      age: this.state.age - 1,
-    });
+    usersData: [
+      {
+        login: "mojombo",
+        id: 1,
+        avatar_url: "https://avatars.githubusercontent.com/u/1?v=4",
+        html_url: "https://github.com/mojombo",
+      },
+      {
+        login: "defunkt",
+        id: 2,
+        avatar_url: "https://avatars.githubusercontent.com/u/2?v=4",
+        html_url: "https://github.com/defunkt",
+      },
+      {
+        login: "pjhyett",
+        id: 3,
+        avatar_url: "https://avatars.githubusercontent.com/u/3?v=4",
+        html_url: "https://github.com/pjhyett",
+      },
+    ],
   };
 
   render() {
     return (
       <div className="App">
         <Navbar />
-        <UserItem />
-        <UserItem />
-        <UserItem />
-        <UserItem />
-        <UserItem />
-        <UserItem />
+        <Users usersData={this.state.usersData} />
       </div>
     );
   }
