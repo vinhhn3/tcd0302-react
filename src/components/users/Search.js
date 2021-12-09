@@ -11,8 +11,12 @@ class Search extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.text);
-    this.setState({ text: "" });
+    if (this.state.text === "") {
+      alert("Input cannot be null");
+    } else {
+      console.log(this.state.text);
+      this.setState({ text: "" });
+    }
   };
 
   render() {
@@ -27,6 +31,7 @@ class Search extends Component {
             onChange={this.onChange}
             value={this.state.text}
           />
+
           <input
             type="submit"
             className="btn btn-dark btn-block"
