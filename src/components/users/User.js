@@ -21,7 +21,7 @@ const User = (props) => {
     following,
     bio,
     blog,
-  } = this.props.user;
+  } = props.user;
 
   return (
     <div>
