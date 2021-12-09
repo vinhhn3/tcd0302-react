@@ -16,6 +16,7 @@ import Users from "./components/users/Users";
 class App extends Component {
   state = {
     usersData: [],
+    title: "TCD0302-React App",
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar title={this.state.title} />
         <div className="container">
           <Users usersData={this.state.usersData} />
         </div>

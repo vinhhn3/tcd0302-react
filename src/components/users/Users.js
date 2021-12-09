@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserItem from "./UserItem";
+import userStyle from "./Users.style";
 
 class Users extends Component {
   componentDidMount() {
@@ -11,15 +12,10 @@ class Users extends Component {
         {this.props.usersData.map((user) => (
           <UserItem key={user.id} user={user} />
         ))}
+        <p style={userStyle.title}>This is a test</p>
       </div>
     );
   }
 }
-
-const userStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gridGap: "1rem",
-};
 
 export default Users;
