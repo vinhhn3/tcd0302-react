@@ -1,58 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class Search extends Component {
-  state = {
-    text: "",
-  };
-  onChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ text: event.target.value });
+const Search = (props) => {
+  const [text, setText] = useState("");
+
+  const onChange = (event) => {
+    setText(event.target.value);
   };
 
-  onSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    if (this.state.text === "") {
+    if (text === "") {
       alert("Input cannot be null");
     } else {
-      console.log(this.state.text);
-      this.props.searchUsers(this.state.text);
-      this.setState({ text: "" });
+      props.searchUsers(text);
+      setText("");
     }
   };
 
-  onClear = (event) => {
+  const onClear = (event) => {
     event.preventDefault();
-    this.props.clearUsers();
+    props.clearUsers();
   };
 
-  render() {
-    return (
-      <div>
-        <form className="form">
-          <input
-            type="text"
-            name="text"
-            placeholder="Seach by name"
-            onChange={this.onChange}
-            value={this.state.text}
-          />
+  return (
+    <div>
+      <form className="form">
+        <input
+          type="text"
+          name="text"
+          placeholder="Seach by name"
+          onChange={onChange}
+          value={text}
+        />
 
-          <input
-            type="submit"
-            className="btn btn-dark btn-block"
-            onClick={this.onSubmit}
-          />
-          {this.props.usersData.length > 0 ? (
-            <button onClick={this.onClear} className="btn btn-light btn-block">
-              Clear
-            </button>
-          ) : (
-            ""
-          )}
-        </form>
-      </div>
-    );
-  }
-}
+        <input
+          type="submit"
+          className="btn btn-dark btn-block"
+          onClick={onSubmit}
+        />
+        {props.usersData.length > 0 ? (
+          <button onClick={onClear} className="btn btn-light btn-block">
+            Clear
+          </button>
+        ) : (
+          ""
+        )}
+      </form>
+    </div>
+  );
+};
 
 export default Search;
