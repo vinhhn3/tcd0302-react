@@ -15,6 +15,7 @@ class Search extends Component {
       alert("Input cannot be null");
     } else {
       console.log(this.state.text);
+      this.props.searchUsers(this.state.text);
       this.setState({ text: "" });
     }
   };

@@ -10,6 +10,7 @@ class App extends Component {
     usersData: [],
     title: "TCD0302-React App",
     showLoading: true,
+    searchText: "",
   };
 
   async componentDidMount() {
@@ -22,12 +23,17 @@ class App extends Component {
     });
   }
 
+  searchUsers = (text) => {
+    this.setState({ searchText: text });
+  };
+
   render() {
     return (
       <div>
         <Navbar title={this.state.title} />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers} />
+          {this.state.searchText}
           <Users
             usersData={this.state.usersData}
             showLoading={this.state.showLoading}
