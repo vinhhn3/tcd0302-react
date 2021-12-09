@@ -20,6 +20,11 @@ class Search extends Component {
     }
   };
 
+  onClear = (event) => {
+    event.preventDefault();
+    this.props.clearUsers();
+  };
+
   render() {
     return (
       <div>
@@ -38,6 +43,13 @@ class Search extends Component {
             className="btn btn-dark btn-block"
             onClick={this.onSubmit}
           />
+          {this.props.usersData.length > 0 ? (
+            <button onClick={this.onClear} className="btn btn-light btn-block">
+              Clear
+            </button>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     );

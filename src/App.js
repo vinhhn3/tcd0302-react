@@ -12,16 +12,6 @@ class App extends Component {
     showLoading: false,
   };
 
-  // async componentDidMount() {
-  //   this.setState({ showLoading: true });
-  //   const response = await axios.get("https://api.github.com/users");
-  //   console.log(response.data);
-  //   this.setState({
-  //     usersData: response.data,
-  //     showLoading: false,
-  //   });
-  // }
-
   searchUsers = async (text) => {
     this.setState({ showLoading: true });
     const response = await axios.get(
@@ -33,12 +23,23 @@ class App extends Component {
     });
   };
 
+  clearUsers = () => {
+    console.log("clearUsers clicked on App.js...");
+    this.setState({
+      usersData: [],
+    });
+  };
+
   render() {
     return (
       <div>
         <Navbar title={this.state.title} />
         <div className="container">
-          <Search searchUsers={this.searchUsers} />
+          <Search
+            clearUsers={this.clearUsers}
+            searchUsers={this.searchUsers}
+            usersData={this.state.usersData}
+          />
           <Users
             usersData={this.state.usersData}
             showLoading={this.state.showLoading}
