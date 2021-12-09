@@ -1,21 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import UserItem from "./UserItem";
 import userStyle from "./Users.style";
 
-class Users extends Component {
-  componentDidMount() {
-    console.log("Users component is mounted ...");
+const Users = ({ usersData, showLoading }) => {
+  if (showLoading) {
+    return <h2>Fetching the data ...</h2>;
   }
-  render() {
-    return (
-      <div style={userStyle}>
-        {this.props.usersData.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-        <p style={userStyle.title}>This is a test</p>
-      </div>
-    );
-  }
-}
+  return (
+    <div style={userStyle}>
+      {usersData.map((user) => (
+        <UserItem key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 
 export default Users;
