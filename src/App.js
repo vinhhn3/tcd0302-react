@@ -9,22 +9,28 @@ class App extends Component {
   state = {
     usersData: [],
     title: "TCD0302-React App",
-    showLoading: true,
-    searchText: "",
+    showLoading: false,
   };
 
-  async componentDidMount() {
+  // async componentDidMount() {
+  //   this.setState({ showLoading: true });
+  //   const response = await axios.get("https://api.github.com/users");
+  //   console.log(response.data);
+  //   this.setState({
+  //     usersData: response.data,
+  //     showLoading: false,
+  //   });
+  // }
+
+  searchUsers = async (text) => {
     this.setState({ showLoading: true });
-    const response = await axios.get("https://api.github.com/users");
-    console.log(response.data);
+    const response = await axios.get(
+      `https://api.github.com/search/users?q=${text}`
+    );
     this.setState({
-      usersData: response.data,
+      usersData: response.data.items,
       showLoading: false,
     });
-  }
-
-  searchUsers = (text) => {
-    this.setState({ searchText: text });
   };
 
   render() {
@@ -33,7 +39,6 @@ class App extends Component {
         <Navbar title={this.state.title} />
         <div className="container">
           <Search searchUsers={this.searchUsers} />
-          {this.state.searchText}
           <Users
             usersData={this.state.usersData}
             showLoading={this.state.showLoading}
