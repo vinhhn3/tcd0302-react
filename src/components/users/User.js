@@ -1,9 +1,12 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
 const User = (props) => {
+  const githubContext = useContext(GithubContext);
+  const { getUser, user } = githubContext;
   useEffect(() => {
-    props.getUser(props.match.params.login);
+    getUser(props.match.params.login);
   }, []);
 
   const {
@@ -21,7 +24,7 @@ const User = (props) => {
     following,
     bio,
     blog,
-  } = props.user;
+  } = user;
 
   return (
     <div>
@@ -55,6 +58,7 @@ const User = (props) => {
           <li>{company && <Fragment>Company: {company}</Fragment>}</li>
           <li>{website && <Fragment>Website: {website}</Fragment>}</li>
           <li>{email && <Fragment>Email: {email}</Fragment>}</li>
+          <li>{blog && <Fragment>Blog: {blog}</Fragment>}</li>
         </ul>
       </>
       <div className="card card-center">

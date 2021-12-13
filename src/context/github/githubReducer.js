@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable no-unused-vars */
-import { CLEAR_USERS, SEARCH_USERS, SET_LOADING } from "../types";
+import { CLEAR_USERS, GET_USER, SEARCH_USERS, SET_LOADING } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -19,6 +19,11 @@ export default (state, action) => {
       return {
         ...state,
         usersData: [],
+      };
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
 
     default:
