@@ -1,12 +1,14 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GithubContext from "../../context/github/githubContext";
+import Repos from "../repos/Repos";
 
 const User = (props) => {
   const githubContext = useContext(GithubContext);
-  const { getUser, user } = githubContext;
+  const { getUser, user, getRepos, repos } = githubContext;
   useEffect(() => {
     getUser(props.match.params.login);
+    getRepos(props.match.params.login);
   }, []);
 
   const {
@@ -67,6 +69,7 @@ const User = (props) => {
         <div className="badge badge-danger">Public repos: {public_repos}</div>
         <div className="badge badge-white">Public gists: {public_gists}</div>
       </div>
+      <Repos repos={repos} />
     </div>
   );
 };

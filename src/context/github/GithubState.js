@@ -1,6 +1,12 @@
 import axios from "axios";
 import { useReducer } from "react";
-import { CLEAR_USERS, GET_USER, SEARCH_USERS, SET_LOADING } from "../types";
+import {
+  CLEAR_USERS,
+  GET_REPOS,
+  GET_USER,
+  SEARCH_USERS,
+  SET_LOADING,
+} from "../types";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
 
@@ -10,6 +16,7 @@ const GithubState = (props) => {
     user: {},
     showLoading: false,
     title: "TCD0302-ReactApp-Context",
+    repos: [],
   };
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -45,6 +52,16 @@ const GithubState = (props) => {
     });
   };
 
+  const getRepos = async (login) => {
+    const response = await axios.get(
+      `https://api.github.com/users/${login}/repos`
+    );
+    dispatch({
+      type: GET_REPOS,
+      payload: response.data,
+    });
+  };
+
   return (
     <GithubContext.Provider
       value={{
@@ -52,9 +69,11 @@ const GithubState = (props) => {
         user: state.user,
         showLoading: state.showLoading,
         title: state.title,
+        repos: state.repos,
         searchUsers,
         clearUsers,
         getUser,
+        getRepos,
       }}
     >
       {props.children}
