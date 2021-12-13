@@ -9,6 +9,7 @@ const GithubState = (props) => {
     usersData: [],
     user: {},
     showLoading: false,
+    title: "TCD0302-ReactApp-Context",
   };
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -38,6 +39,7 @@ const GithubState = (props) => {
         usersData: state.usersData,
         user: state.user,
         showLoading: state.showLoading,
+        title: state.title,
         searchUsers,
       }}
     >
