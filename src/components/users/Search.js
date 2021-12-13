@@ -4,6 +4,7 @@ import GithubContext from "../../context/github/githubContext";
 const Search = (props) => {
   const [text, setText] = useState("");
   const githubContext = useContext(GithubContext);
+  const { usersData, searchUsers } = githubContext;
 
   const onChange = (event) => {
     setText(event.target.value);
@@ -14,7 +15,7 @@ const Search = (props) => {
     if (text === "") {
       alert("Input cannot be null");
     } else {
-      githubContext.searchUsers(text);
+      searchUsers(text);
       setText("");
     }
   };
@@ -40,7 +41,7 @@ const Search = (props) => {
           className="btn btn-dark btn-block"
           onClick={onSubmit}
         />
-        {githubContext.usersData.length > 0 ? (
+        {usersData.length > 0 ? (
           <button onClick={onClear} className="btn btn-light btn-block">
             Clear
           </button>

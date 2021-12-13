@@ -13,7 +13,7 @@ import GithubState from "./context/github/GithubState";
 const App = () => {
   const [usersData, setUsersData] = useState([]);
   const [title, setTitle] = useState("TCD0302-React App");
-  const [showLoading, setShowLoading] = useState(false);
+  // const [showLoading, setShowLoading] = useState(false);
   const [user, setUser] = useState({});
 
   const clearUsers = () => {
@@ -38,7 +38,7 @@ const App = () => {
                 render={() => (
                   <Fragment>
                     <Search clearUsers={clearUsers} />
-                    <Users showLoading={showLoading} />
+                    <Users />
                   </Fragment>
                 )}
               />

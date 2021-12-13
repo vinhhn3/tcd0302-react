@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
+import GithubContext from "../../context/github/githubContext";
 import UserItem from "./UserItem";
 import userStyle from "./Users.style";
-import GithubContext from "../../context/github/githubContext";
 
-
-const Users = ({ showLoading }) => {
+const Users = () => {
   const githubContext = useContext(GithubContext);
-
+  const { showLoading, usersData } = githubContext;
   if (showLoading) {
     return <h2>Fetching the data ...</h2>;
   }
   return (
     <div style={userStyle}>
-      {githubContext.usersData.map((user) => (
+      {usersData.map((user) => (
         <UserItem key={user.id} user={user} />
       ))}
     </div>
