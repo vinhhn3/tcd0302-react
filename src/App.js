@@ -37,11 +37,8 @@ const App = () => {
                 path="/"
                 render={() => (
                   <Fragment>
-                    <Search
-                      clearUsers={clearUsers}
-                      usersData={usersData}
-                    />
-                    <Users usersData={usersData} showLoading={showLoading} />
+                    <Search clearUsers={clearUsers} />
+                    <Users showLoading={showLoading} />
                   </Fragment>
                 )}
               />
