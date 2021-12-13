@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import GithubContext from "../../context/github/githubContext";
 
-const Search = (props) => {
+const Search = () => {
   const [text, setText] = useState("");
   const githubContext = useContext(GithubContext);
-  const { usersData, searchUsers } = githubContext;
+  const { usersData, searchUsers, clearUsers } = githubContext;
 
   const onChange = (event) => {
     setText(event.target.value);
@@ -22,7 +22,7 @@ const Search = (props) => {
 
   const onClear = (event) => {
     event.preventDefault();
-    props.clearUsers();
+    clearUsers();
   };
 
   return (
