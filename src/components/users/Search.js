@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import GithubContext from "../../context/github/githubContext";
 
 const Search = (props) => {
   const [text, setText] = useState("");
+  const githubContext = useContext(GithubContext);
 
   const onChange = (event) => {
     setText(event.target.value);
@@ -12,7 +14,7 @@ const Search = (props) => {
     if (text === "") {
       alert("Input cannot be null");
     } else {
-      props.searchUsers(text);
+      githubContext.searchUsers(text);
       setText("");
     }
   };
@@ -38,7 +40,7 @@ const Search = (props) => {
           className="btn btn-dark btn-block"
           onClick={onSubmit}
         />
-        {props.usersData.length > 0 ? (
+        {githubContext.usersData.length > 0 ? (
           <button onClick={onClear} className="btn btn-light btn-block">
             Clear
           </button>

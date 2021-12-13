@@ -16,15 +16,6 @@ const App = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [user, setUser] = useState({});
 
-  const searchUsers = async (text) => {
-    setShowLoading(true);
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}`
-    );
-    setUsersData(response.data.items);
-    setShowLoading(false);
-  };
-
   const clearUsers = () => {
     setUsersData([]);
   };
@@ -48,7 +39,6 @@ const App = () => {
                   <Fragment>
                     <Search
                       clearUsers={clearUsers}
-                      searchUsers={searchUsers}
                       usersData={usersData}
                     />
                     <Users usersData={usersData} showLoading={showLoading} />
