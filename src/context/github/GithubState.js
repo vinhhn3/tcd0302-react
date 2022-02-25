@@ -1,5 +1,9 @@
-import axios from "axios";
 import { useReducer } from "react";
+import {
+  getGitHubRepos,
+  getGitHubUser,
+  getGitHubUsers,
+} from "../../api/GithubApi";
 import {
   CLEAR_USERS,
   GET_REPOS,
@@ -23,9 +27,7 @@ const GithubState = (props) => {
 
   const searchUsers = async (text) => {
     setLoading();
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}`
-    );
+    const response = await getGitHubUsers(text);
     dispatch({
       type: SEARCH_USERS,
       payload: response.data.items,
@@ -45,7 +47,7 @@ const GithubState = (props) => {
   };
 
   const getUser = async (login) => {
-    const response = await axios.get(`https://api.github.com/users/${login}`);
+    const response = await getGitHubUser(login);
     dispatch({
       type: GET_USER,
       payload: response.data,
@@ -53,9 +55,7 @@ const GithubState = (props) => {
   };
 
   const getRepos = async (login) => {
-    const response = await axios.get(
-      `https://api.github.com/users/${login}/repos`
-    );
+    const response = await getGitHubRepos(login);
     dispatch({
       type: GET_REPOS,
       payload: response.data,
